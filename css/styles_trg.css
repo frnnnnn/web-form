@@ -1,0 +1,14 @@
+.mds {
+    overflow: hidden;
+    border-radius: 40px;
+    background-color: #fcfefc;
+    max-width: 520px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.fly-form {
+    max-width: 400px;
+    
+}
