@@ -14,12 +14,12 @@ function validate() {
     var ret_tel = validate_telefono();
   
     var ret_pass = validate_password();
-
+    if (ret_pass === undefined) {
+            ret_pass = false;
+        } 
     var ret_aficiones = add();
 
-    if (ret_pass === undefined) {
-        ret_pass = false;
-    } 
+    
     return ret_nombre && ret_email && ret_pass && ret_comuna && ret_address && ret_tel && ret_url && ret_aficiones;
 }
 
@@ -258,9 +258,6 @@ function validate_password() {
 
 
 
-
-
-
 function add() {
     let input = document.getElementById("aficiones").value;
     let div = document.getElementById("lista");
@@ -278,24 +275,21 @@ function add() {
             li.className = "list-group-item";
             li.innerHTML = aficiones[i];
             ul.appendChild(li);
-
         }
-        error.innerHTML = "debe ingresar al menos 2 aficiones.";
+        error.innerHTML = "Debe ingresar al menos 2 aficiones.";
         error.className = "text-danger";
         shakeElement('aficiones');
         setTimeout(function () {
             error.classList.remove("shake");
         }, 4000);
-        error.innerHTML = "";
         return false;
     } else {
         if (input === "" && aficiones.length < 2) {
-            error.innerHTML = "no puede agregar un aficion nula.";
+            error.innerHTML = "No puede agregar una afición nula.";
             error.className = "text-danger";
             shakeElement('aficiones');
             setTimeout(function () {
                 error.classList.remove("shake");
-                error.innerHTML = "";
             }, 4000);
             return false;
         } else {
@@ -314,20 +308,17 @@ function add() {
                     li.className = "list-group-item";
                     li.innerHTML = aficiones[i];
                     ul.appendChild(li);
-
                 }
-            } if (aficiones.length >= 2) {
-                document.getElementById("aficiones").value = "";
+            }
+            if (aficiones.length >= 2) {
                 return true;
             } else {
-                document.getElementById("aficiones").value = "";
                 return false;
             }
-
         }
     }
-
 }
+
 
 function shakeElement(ide) {
     var elemento = document.getElementById(ide);
